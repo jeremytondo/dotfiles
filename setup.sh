@@ -21,8 +21,7 @@ main() {
   fi
 
   # Install Plugins
-  install_autosuggestions
-  install_starship
+  install_plugins
 
   echo "All plugins installed"
 }
@@ -68,16 +67,27 @@ create_zshrc() {
   echo "Created $zshrc"
 }
 
+# Adds the right setting to ~/.zshrc.
 init_zshrc() {
   cat zsh/init.zsh $zshrc > .zshrc.tmp
   mv .zshrc.tmp $zshrc
   echo "Initialized ZSH"
 }
 
+# Install plugins.
+install_plugins() {
+  if [ ! -d ~/.config/zsh-plugins ]; then
+    mkdir ~/.config/zsh-plugins
+  fi
+
+  install_autosuggestions
+  install_starship
+}
+
 install_autosuggestions() {
-  if [ ! -d ~/.config/zsh/zsh-autosuggestions ]; then
+  if [ ! -d ~/.config/zsh-plugins/zsh-autosuggestions ]; then
     echo "Installing zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-plugins/zsh-autosuggestions
   fi
 }
 

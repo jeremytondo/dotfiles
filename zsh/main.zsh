@@ -19,7 +19,7 @@ compinit
 # | Auto Completions |
 # +------------------+
 
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # +---------+
 # | Aliases |
