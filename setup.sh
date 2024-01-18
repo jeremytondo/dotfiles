@@ -58,6 +58,8 @@ is_zshrc_initialized() {
 # Installs ZSH
 install_zsh() {
   echo "Installling zsh..."
+  sudo apt install zsh -y
+  chsh -s $(which zsh)
 }
 
 # Creates a new .zshrc file with the initial config
