@@ -104,7 +104,7 @@ install_starship() {
 install_lsd() {
   if ! which lsd &> /dev/null; then
     echo "Installing LSD..."
-    apt install lsd
+    sudo apt install lsd
   fi 
 }
 
