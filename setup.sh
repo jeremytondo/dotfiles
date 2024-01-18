@@ -1,44 +1,91 @@
 #!/bin/bash
 
-CONFIG_FILE="test.sh"
-INIT_STRING="source ~/.config/zsh/main.zsh"
+zshrc="$HOME/.zshrc"
 
 main() {
-  if test -f ~/$CONFIG_FILE; then
-    echo "ZSH config exists."
-    
-    if check_if_initialized; then
-      echo "Custom config alreasy initialized"
-    else
-      echo "Initializing custom config in existing .zshrc"
-    fi
-  else
-    echo "Creating new .zshrc"
+  # Install & Setup ZSH
+  if ! is_zsh_installed; then
+    echo "ZSH is not installed."
+    install_zsh
+  fi
+
+  if ! is_zshrc; then
+    echo "$zshrc does not exist."
     create_zshrc
   fi
+
+  if is_zshrc_initialized; then
+    echo "ZSH already initialized."
+  else
+    init_zshrc
+  fi
+
+  # Install Plugins
+  install_autosuggestions
+  install_starship
+
+  echo "All plugins installed"
 }
 
-# Checks to see if the .zshrc file already has the
-# proper entries.
-check_if_initialized() {
-  if grep -q "$INIT_STRING" ~/.zshrc; then
+# Checks to see if zsh is installed.
+is_zsh_installed() {
+  if which zsh &> /dev/null; then
     true
   else
     false
   fi
 }
 
+# Check to see if .zshrc file exists in the 
+# home directory.
+is_zshrc() {
+  if [ -f $zshrc ]; then
+    true
+  else
+    false
+  fi
+}
+
+# Check to see if the .zshrc file already has
+# been initialized by this script.
+is_zshrc_initialized() {
+  if grep -q "Start Init -->" $zshrc; then
+    true
+  else
+    false
+  fi
+}
+
+# Installs ZSH
+install_zsh() {
+  echo "Installling zsh..."
+}
+
 # Creates a new .zshrc file with the initial config
 # included.
 create_zshrc() {
-  touch ~/test.sh
-#   cat <<- EOF > ~/test.sh
-#   $INIT_STRING
-# EOF
+  touch $zshrc
+  echo "Created $zshrc"
 }
 
 init_zshrc() {
-  echo "$INIT_STRING" >> ~/test.sh
+  cat zsh/init.zsh $zshrc > .zshrc.tmp
+  mv .zshrc.tmp $zshrc
+  echo "Initialized ZSH"
+}
+
+install_autosuggestions() {
+  if [ ! -d ~/.config/zsh/zsh-autosuggestions ]; then
+    echo "Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+  fi
+}
+
+install_starship() {
+  if ! which starship &> /dev/null; then
+    echo "Installing Starship..."
+    curl -sS https://starship.rs/install.sh | sh
+  fi
 }
 
 main
