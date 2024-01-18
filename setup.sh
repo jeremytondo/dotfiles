@@ -84,6 +84,7 @@ install_plugins() {
 
   install_autosuggestions
   install_starship
+  install_lsd
 }
 
 install_autosuggestions() {
@@ -98,6 +99,13 @@ install_starship() {
     echo "Installing Starship..."
     curl -sS https://starship.rs/install.sh | sh
   fi
+}
+
+install_lsd() {
+  if ! which lsd &> /dev/null; then
+    echo "Installing LSD..."
+    apt install lsd
+  fi 
 }
 
 main
