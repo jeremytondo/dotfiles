@@ -1,3 +1,9 @@
+# +-----------------+
+# | GLOBAL SETTINGS |
+# +-----------------+
+
+dotfiles="$HOME/.dotfiles"
+
 # +---------------+
 # | INITIAL SETUP |
 # +---------------+
@@ -19,18 +25,18 @@ compinit
 # | Auto Completions |
 # +------------------+
 
-source ~/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # +---------+
 # | Aliases |
 # +---------+
 
-source "${HOME}/.dotfiles/zsh/aliases.zsh"
+source $dotfiles/zsh/aliases.zsh
 
 # +--------+
 # | PROMPT |
 # +--------+
 
 # Prmopt Setup
-export STARSHIP_CONFIG="${HOME}/.dotfiles/starship/starship.toml"
+export STARSHIP_CONFIG="$dotfiles/starship/starship.toml"
 eval "$(starship init zsh)"
