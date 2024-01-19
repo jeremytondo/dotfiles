@@ -19,13 +19,13 @@ compinit
 # | Auto Completions |
 # +------------------+
 
-source ~/.config/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # +---------+
 # | Aliases |
 # +---------+
 
-source "${HOME}/.config/zsh/aliases.zsh"
+source "${HOME}/.dotfiles/zsh/aliases.zsh"
 
 # +--------+
 # | PROMPT |
