@@ -32,5 +32,5 @@ source "${HOME}/.config/zsh/aliases.zsh"
 # +--------+
 
 # Prmopt Setup
-export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+export STARSHIP_CONFIG="${HOME}/.dotfiles/starship/starship.toml"
 eval "$(starship init zsh)"
