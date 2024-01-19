@@ -1,5 +1,6 @@
 #!/bin/bash
 
+dotfiles="$HOME/.dotfiles"
 zshrc="$HOME/.zshrc"
 
 main() {
@@ -78,8 +79,8 @@ init_zshrc() {
 
 # Install plugins.
 install_plugins() {
-  if [ ! -d ~/.config/zsh-plugins ]; then
-    mkdir ~/.config/zsh-plugins
+  if [ ! -d $dotfiles/zsh-plugins ]; then
+    mkdir $dotfiles/zsh-plugins
   fi
 
   install_autosuggestions
@@ -88,9 +89,9 @@ install_plugins() {
 }
 
 install_autosuggestions() {
-  if [ ! -d ~/.config/zsh-plugins/zsh-autosuggestions ]; then
+  if [ ! -d $dotfiles/zsh-plugins/zsh-autosuggestions ]; then
     echo "Installing zsh-autosuggestions..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions $dotfiles/zsh-plugins/zsh-autosuggestions
   fi
 }
 
