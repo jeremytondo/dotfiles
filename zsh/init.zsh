@@ -10,7 +10,7 @@
 
 # Start Init -->
 
-source ~/.config/zsh/main.zsh
+source ~/.dotfiles/zsh/main.zsh
 
 # <-- End Init
 
