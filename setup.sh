@@ -4,6 +4,9 @@ dotfiles="$HOME/.dotfiles"
 zshrc="$HOME/.zshrc"
 
 main() {
+  sudo apt-get update  
+  sudo apt-get upgrade
+
   # Install & Setup ZSH
   if ! is_zsh_installed; then
     echo "ZSH is not installed."
@@ -25,6 +28,9 @@ main() {
   install_plugins
 
   echo "All plugins installed"
+
+  # Install Neovim
+  install_nvim
 }
 
 # Checks to see if zsh is installed.
@@ -56,11 +62,33 @@ is_zshrc_initialized() {
   fi
 }
 
+is_nvim_installed() {
+  if which nvim &> /dev/null; then
+    true
+  else
+    false
+  fi
+}
+
 # Installs ZSH
 install_zsh() {
   echo "Installling zsh..."
   sudo apt install zsh -y
   chsh -s $(which zsh)
+}
+
+# Installs Neovim
+install_nvim() {
+  if is_nvim_installed; then
+    echo "Neovim already installed. Skipping."
+  else
+    echo "Installing Neovim..."
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    sudo rm -rf /opt/nvim
+    sudo tar -C /opt -xzf nvim-linux64.tar.gz
+    sudo rm nvim-linux64.tar.gz
+    sudo apt-get install build-essential -y
+  fi
 }
 
 # Creates a new .zshrc file with the initial config
