@@ -25,7 +25,7 @@ compinit
 # | Auto Completions |
 # +------------------+
 
-source $dotfiles/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $dotfiles/zsh/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # +---------+
 # | Aliases |

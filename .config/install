@@ -13,7 +13,7 @@ main() {
   # 5) Git setup
 
 
-  if ! is_zshrc; then
+  if ! $(is_zshrc); then
     echo "$zshrc does not exist."
     create_zshrc
   fi
@@ -71,8 +71,6 @@ install_plugins() {
   fi
 
   install_autosuggestions
-  install_starship
-  install_lsd
 }
 
 install_autosuggestions() {
