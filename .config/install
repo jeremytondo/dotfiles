@@ -1,0 +1,93 @@
+#!/bin/bash
+
+dotfiles="$HOME/.config"
+zshrc="$HOME/.zshrc"
+
+main() {
+  # 1) Check if .zshrc file exists. If not, create one.
+  # 2) If it does exist, check to see if the config section matches
+  #    what's in init.zsh
+  # 3) If it matches, do nothing, if it exists and doesn't match, 
+  #    update it. If it doesn't exist, add it.
+  # 4) Install zsh plugins
+  # 5) Git setup
+
+
+  if ! is_zshrc; then
+    echo "$zshrc does not exist."
+    create_zshrc
+  fi
+
+  if is_zshrc_initialized; then
+    echo "ZSH already initialized."
+  else
+    init_zshrc
+  fi
+
+  # Install Plugins
+  install_plugins
+
+  echo "All plugins installed"
+}
+
+# Check to see if .zshrc file exists in the 
+# home directory.
+is_zshrc() {
+  if [ -f $zshrc ]; then
+    echo true
+  else
+    echo false
+  fi
+}
+
+# Check to see if the .zshrc file already has
+# been initialized by this script.
+is_zshrc_initialized() {
+  if grep -q "Start Init -->" $zshrc; then
+    echo true
+  else
+    echo false
+  fi
+}
+
+# Creates a new .zshrc file with the initial config
+# included.
+create_zshrc() {
+  touch $zshrc
+  echo "Created $zshrc."
+}
+
+# Adds the right setting to ~/.zshrc.
+init_zshrc() {
+  cat zsh/init.zsh $zshrc > .zshrc.tmp
+  mv .zshrc.tmp $zshrc
+  echo "Initialized ZSH"
+}
+
+# Install plugins.
+install_plugins() {
+  if [ ! -d $dotfiles/zsh/zsh-plugins ]; then
+    mkdir $dotfiles/zsh/zsh-plugins
+  fi
+
+  install_autosuggestions
+  install_starship
+  install_lsd
+}
+
+install_autosuggestions() {
+  if [ ! -d $dotfiles/zsh/zsh-plugins/zsh-autosuggestions ]; then
+    echo "Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions $dotfiles/zsh/zsh-plugins/zsh-autosuggestions
+  fi
+}
+
+# NOTES
+# Somewhere need to add global Git settings
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
+# 
+# Maybe add this git config as well:
+# git config --global --add --bool push.autoSetupRemote true
+# This creates new branches in the remote when they are pushed.
+main
