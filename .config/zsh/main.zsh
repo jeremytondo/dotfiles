@@ -2,7 +2,7 @@
 # | GLOBAL SETTINGS |
 # +-----------------+
 
-dotfiles="$HOME/.dotfiles"
+dotfiles="$HOME/.config"
 
 # +---------------+
 # | INITIAL SETUP |
