@@ -1,21 +1,17 @@
+# Start Init -->
 # +---------------+
 # | SHARED CONFIG |
 # +---------------+ 
-# Initialization creatd by running ./config/setup.sh.
+# Initialization creatd by running ./config/install.
 # Links the relevant configs to this .zshrc file.
 # Don't change the `Start Init -->` or `<-- End Init`
 # comments, they're used for future automated updates.
 # 
-# For more infomrtion see ~/.config/readme.md
+# For more infomrtion see ~/readme.md
 
-# Start Init -->
 
 source ~/.dotfiles/zsh/main.zsh
 
+# Everything below is custom to this machine and won't be touched by
+# .config/install.
 # <-- End Init
-
-# +---------------+
-# | CUSTOM CONFIG |
-# +---------------+
-# Everything below is custom config for this device.
-
