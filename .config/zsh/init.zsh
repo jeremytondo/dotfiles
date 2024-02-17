@@ -10,7 +10,7 @@
 # For more infomrtion see ~/readme.md
 
 
-source ~/.dotfiles/zsh/main.zsh
+source ~/.config/zsh/main.zsh
 
 # Everything below is custom to this machine and won't be touched by
 # .config/install.
