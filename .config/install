@@ -7,6 +7,9 @@ main() {
   setup_zshrc
   install_zsh_plugins
   setup_git
+
+  # Set Zsh as default shell
+  chsh -s $(which zsh)
 }
 
 setup_zshrc() {
