@@ -51,6 +51,9 @@ setup_git() {
   git config --global user.email "jmargari@gmail.com"
   git config --global user.name "jeremytondo"
   git config --global --add --bool push.autoSetupRemote true
+
+  # Setup config bare repo to not show untracked files.
+  config config --local status.showUntrackedFiles no
 }
 
 main
