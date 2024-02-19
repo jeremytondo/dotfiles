@@ -9,7 +9,8 @@ main() {
   setup_git
 
   # Set Zsh as default shell
-  chsh -s $(which zsh)
+  # chsh -s $(which zsh)
+  sudo usermod -s /usr/bin/zsh jeremytondo
 }
 
 setup_zshrc() {
