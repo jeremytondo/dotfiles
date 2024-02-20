@@ -7,10 +7,12 @@ main() {
   setup_zshrc
   install_zsh_plugins
   setup_git
+  setup_tmux
 
-  # Set Zsh as default shell
-  # chsh -s $(which zsh)
-  sudo usermod -s /usr/bin/zsh jeremytondo
+  # Set Zsh as default shell in Linux. It's already the default in MacOS
+  if [[ $(uname) == "Linux" ]]; then
+    sudo usermod -s /usr/bin/zsh jeremytondo
+  fi
 }
 
 setup_zshrc() {
@@ -58,6 +60,13 @@ setup_git() {
 
   # Setup config bare repo to not show untracked files.
   git --git-dir=$HOME/.dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+}
+
+setup_tmux() {
+  # Note: The first time you run Tmux you'll need to use `prefix + I` to
+  # initially install all of the plugins.
+  echo "Setting up Tmux."
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 }
 
 main

@@ -45,7 +45,13 @@ eval "$(starship init zsh)"
 # | NEOVIM |
 # +--------+
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
+if [[ $(uname) == "Darwin" ]]; then
+    export PATH="$PATH:/opt/nvim-macos/bin"
+fi
+
+if [[ $(uname) == "Linux" ]]; then
+    export PATH="$PATH:/opt/nvim-linux64/bin"
+fi
 
 # +------------------+
 # | Config Directory |
@@ -60,3 +66,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# +------------+
+# | Nix Config |
+# +------------+
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
