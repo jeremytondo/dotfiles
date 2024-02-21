@@ -12,8 +12,6 @@ $directory\
 right_format = """
 $git_branch\
 $git_status\
-$hostname\
-$username
 """
 
 # Sets user-defined palette
