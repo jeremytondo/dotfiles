@@ -12,6 +12,7 @@ $directory\
 right_format = """
 $git_branch\
 $git_status\
+$nix_shell\
 """
 
 # Sets user-defined palette
@@ -84,6 +85,9 @@ modified = ' '
 staged = '[++\($count\)](green)'
 renamed = '襁 '
 deleted = ' '
+
+[nix_shell]
+format = '[$symbol]($style)'
 
 [docker_context]
 disabled = true
