@@ -591,9 +591,9 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -707,6 +707,9 @@ vim.opt.scrolloff = 8
 
 -- Highlight the column at 80 as a reference for line length.
 vim.opt.colorcolumn = "80"
+
+-- Changing the key mapping for splitting windows horizontally.
+-- nnoremap <C-w>s <C-w>h
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
