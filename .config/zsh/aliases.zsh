@@ -21,3 +21,5 @@ alias tmtma="tmux -L tourney-mate-api a -t tourney-mate-api"
 alias tmstm="tmux detach-client; tmtma"
 alias tmsm="tmux detach-client; tma"
 
+function tms() { tmux -L "$1" "${@:2}"; }
+function tmsa() { tmux -L "$1" a; }
